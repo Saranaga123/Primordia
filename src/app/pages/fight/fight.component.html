@@ -11,16 +11,17 @@
         [imageUrl]="enemy.imageUrl"
         (cardSelected)="onCardClicked($event)">
       </app-radiant-butterfly> 
+      <p>Defense: {{ displayedHP | number:'1.0-0' }} / {{ enemy.defense }}</p>
+    <div class="hp-bar">
+      <div class="hp-fill" [style.width.%]="(displayedHP / enemy.defense) * 100"></div>
+      </div>
     </div>
-  </div>
-  <div class="hp-bar">
-  <div class="hp-fill" [style.width.%]="(displayedHP / enemy.defense) * 100"></div>
-</div>
-<p>Defense: {{ displayedHP | number:'1.0-0' }} / {{ enemy.defense }}</p>
+    </div>
+  </div> 
+  <br>
 
   <!-- Arena / Spell Casting -->
-  <div class="arena">
-    <h2>⚔️ Battle ⚔️</h2>
+  <div class="arena"> 
     <app-target
       [targetSize]="80"
       [spawnInterval]="1000"

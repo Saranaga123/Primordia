@@ -13,3 +13,23 @@
   transition: width 0.2s linear;
   border-radius: 6px;
 }
+.fight-log{
+  position: fixed;
+  text-align: left;
+  top: 0;
+  right: 0;
+  max-width: 25%;
+  min-width: 25%;
+  height: 250px;
+  overflow: scroll;
+  border: solid orange;
+  padding: 5px;
+}
+.enemy-side{
+left: 30%;
+  position: relative;
+}
+.player-side{
+  left: 30%;
+  position: relative;
+}
