@@ -1,57 +1,58 @@
 <div class="fight-container">
-  <!-- Enemy Side -->
-  <table style="width: 100%;">
-    <tr style="width: 200px;">
-      <td style="width: 50%;">
-        <div class="player-side">
-          <div class="cards">
-            <app-worm [name]="player.name" [level]="player.level" [attack]="player.attack" [defense]="player.defense"
-              [imageUrl]="player.imageUrl" (cardSelected)="onCardClicked($event)" style="width: 100%;
-  display: block;">
-            </app-worm>
 
-            <p>Defense: {{ displayedPlayerHP | number:'1.0-0' }} / {{ player.defense }}</p>
-            <div class="hp-bar">
-              <div class="hp-fill" [style.width.%]="(displayedPlayerHP / player.defense) * 100"></div>
-            </div>
-          </div>
-        </div>
-      </td>
-      <td>
-        <span style="color:rgb(78, 16, 16); font-weight: bolder;">VS</span>
-      </td>
-      <td style="width: 220px;">
-        <div class="enemy-side">
-          <div class="cards">
-            <app-radiant-butterfly [name]="enemy.name" [level]="enemy.level" [attack]="enemy.attack"
-              [defense]="enemy.defense" [imageUrl]="enemy.imageUrl" (cardSelected)="onCardClicked($event)" style="width: 100%;
-  display: block;">
-            </app-radiant-butterfly>
-            <p>Defense: {{ displayedHP | number:'1.0-0' }} / {{ enemy.defense }}</p>
-            <div class="hp-bar">
-              <div class="hp-fill" [style.width.%]="(displayedHP / enemy.defense) * 100"></div>
-            </div>
-          </div>
-        </div>
-      </td>
-      
-    </tr>
-  </table>
+  <!-- Top: Enemy / Player cards -->
+  <div class="fight-players">
+    <!-- Player Side -->
+    <div class="player-side cards-wrapper">
+      <app-worm class="card-wrapper"
+        [name]="player.name"
+        [level]="player.level"
+        [attack]="player.attack"
+        [defense]="player.defense"
+        [imageUrl]="player.imageUrl"
+        (cardSelected)="onCardClicked($event)">
+      </app-worm>
+      <p class="hp-text">Defense: {{ displayedPlayerHP | number:'1.0-0' }} / {{ player.defense }}</p>
+      <div class="hp-bar">
+        <div class="hp-fill" [style.width.%]="(displayedPlayerHP / player.defense) * 100"></div>
+      </div>
+    </div>
 
+    <!-- VS Label -->
+    <div class="vs-label">VS</div>
 
-  <br>
+    <!-- Enemy Side -->
+    <div class="enemy-side cards-wrapper">
+      <app-radiant-butterfly class="card-wrapper"
+        [name]="enemy.name"
+        [level]="enemy.level"
+        [attack]="enemy.attack"
+        [defense]="enemy.defense"
+        [imageUrl]="enemy.imageUrl"
+        (cardSelected)="onCardClicked($event)">
+      </app-radiant-butterfly>
+      <p class="hp-text">Defense: {{ displayedHP | number:'1.0-0' }} / {{ enemy.defense }}</p>
+      <div class="hp-bar">
+        <div class="hp-fill" [style.width.%]="(displayedHP / enemy.defense) * 100"></div>
+      </div>
+    </div>
+  </div>
 
   <!-- Arena / Spell Casting -->
   <div class="arena">
-    <app-target [targetSize]="80" [spawnInterval]="1000" [gameDuration]="9000" [targetImage]="'assets/targets/1.png'"
-      [backgroundImage]="'assets/backgrounds/purple1.jpg'" [hitSound]="'assets/Sounds/spell2.wav'"
-      [successSound]="'assets/Sounds/spellfire.wav'" [failSound]="'assets/Sounds/spellfail.wav'" [requiredHits]="7"
+    <app-target
+      [targetSize]="80"
+      [spawnInterval]="1000"
+      [gameDuration]="9000"
+      [targetImage]="'assets/targets/1.png'"
+      [backgroundImage]="'assets/backgrounds/purple1.jpg'"
+      [hitSound]="'assets/Sounds/spell2.wav'"
+      [successSound]="'assets/Sounds/spellfire.wav'"
+      [failSound]="'assets/Sounds/spellfail.wav'"
+      [requiredHits]="7"
       (gameOver)="onGameOver($event)">
     </app-target>
   </div>
-
-  <!-- Player Side -->
-
 
   <!-- Fight Log -->
   <div class="fight-log">
@@ -60,3 +61,5 @@
       <li *ngFor="let entry of fightLog">{{ entry }}</li>
     </ul>
   </div>
+
+</div>

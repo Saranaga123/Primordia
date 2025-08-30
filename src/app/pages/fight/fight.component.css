@@ -1,5 +1,68 @@
+/* Container fills screen */
+.fight-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+  padding: 5px;
+  overflow: hidden;
+}
+
+/* Top cards (player + VS + enemy) */
+.fight-players {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap; /* stack on narrow screens */
+  margin-bottom: 10px;
+}
+
+/* Player & enemy cards wrapper */
+.cards-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 180px;  /* cards don’t get too wide */
+  width: 100%;
+}
+
+/* Card component itself */
+.card-wrapper {
+  width: 100%;
+  display: block;
+}
+
+/* VS Label */
+.vs-label {
+  font-weight: bolder;
+  color: rgb(78,16,16);
+  font-size: clamp(16px, 4vw, 24px);
+  text-align: center;
+  align-self: center;
+  margin: 0 10px;
+}
+
+/* Arena / spell casting */
+.arena {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 250px;
+  max-width: 100%;
+  padding: 5px;
+}
+
+/* Make the target image scale */
+app-target img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* HP Bars */
 .hp-bar {
-  width: 100px;
+  width: 80%;  /* relative to card wrapper */
   height: 12px;
   border: 1px solid #333;
   background-color: #555;
@@ -13,15 +76,22 @@
   transition: width 0.2s linear;
   border-radius: 6px;
 }
-.fight-log{
+
+.hp-text {
+  font-size: clamp(12px, 2.5vw, 14px);
+  margin: 4px 0;
+}
+
+/* Fight Log */
+.fight-log {
   position: fixed;
-  text-align: left;
-  bottom: 10px;
-  left: 0;
-  max-width: 96%;
-  min-width: 96%;
-  height: 70px;
-  overflow: scroll;
-  border: solid orange;
+  bottom: 5px;
+  left: 2%;
+  width: 96%;
+  max-height: 80px;
+  overflow-y: auto;
+  border: 2px solid orange;
   padding: 5px;
-} 
+  background: rgba(0,0,0,0.25);
+  font-size: 0.9rem;
+}
