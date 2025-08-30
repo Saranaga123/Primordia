@@ -16,20 +16,12 @@
 .fight-log{
   position: fixed;
   text-align: left;
-  top: 0;
-  right: 0;
-  max-width: 25%;
-  min-width: 25%;
-  height: 250px;
+  bottom: 10px;
+  left: 0;
+  max-width: 99%;
+  min-width: 99%;
+  height: 170px;
   overflow: scroll;
   border: solid orange;
   padding: 5px;
-}
-.enemy-side{
-left: 10%;
-  position: relative;
-}
-.player-side{
-  left: 10%;
-  position: relative;
-}
+} 

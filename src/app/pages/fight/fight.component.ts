@@ -12,7 +12,7 @@ export class FightComponent {
   }
    
   enemy = {
-    name: '👑🦋Seraphim Butterfly',
+    name: '👑Seraphim Butterfly',
     level: 4,
     attack: 80,
     defense: 20,
@@ -21,7 +21,7 @@ export class FightComponent {
 
   // Example player creature
   player = {
-    name: '👹Abyssal Devourer👹',
+    name: '👹Abyssal Devourer',
     level: 1,
     attack: 101,
     defense: 1,
