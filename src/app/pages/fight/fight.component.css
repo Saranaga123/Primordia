@@ -45,7 +45,7 @@
 
 /* Arena / spell casting */
 .arena {
-  flex: 1 1 auto;
+  flex: 0.5 1 auto;
   display: flex;
   justify-content: center;
   align-items: center;
