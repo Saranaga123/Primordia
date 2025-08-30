@@ -1,0 +1,128 @@
+
+<table border="0" cellspacing="10" cellpadding="10" style="text-align:center;">
+  <tr>
+    <td>
+      <app-worm
+        [name]="'🌿Neutral Worm✨'"
+        [level]="1"
+        [attack]="1"
+        [defense]="1"
+        [evolutionPath]="'neutral'"
+        [imageUrl]="'assets/neutral-worm.gif'"
+        (cardSelected)="onCardClicked($event)">
+      </app-worm>
+    </td>
+    <td>
+      <app-cocoon
+        [name]="'🌟Cosmic Cocoon🌟'"
+        [level]="3"
+        [defense]="5"
+        [evolutionPath]="'cosmic'"
+        [imageUrl]="'assets/cosmic-cocoon.gif'"
+        (cardSelected)="onCardClicked($event)">
+      </app-cocoon>
+    </td>
+    <td>
+      <app-cocoon
+        [name]="'🕸️Dark Cocoon🕸️'"
+        [level]="3"
+        [defense]="6"
+        [evolutionPath]="'dark'"
+        [imageUrl]="'assets/dark-cocoon.gif'"
+        (cardSelected)="onCardClicked($event)">
+      </app-cocoon>
+    </td>
+    
+  </tr>
+
+  <tr>
+    <td>
+      <app-worm
+        [name]="'🐉Devouring Worm🐉'"
+        [level]="1"
+        [attack]="1"
+        [defense]="1"
+        [evolutionPath]="'dark'"
+        [imageUrl]="'assets/dark-worm.gif'"
+        (cardSelected)="onCardClicked($event)">
+      </app-worm>
+    </td>
+    <td>
+      <app-radiant-butterfly
+        [name]="'🦋Radiant Butterfly🦋'"
+        [level]="4"
+        [attack]="8"
+        [defense]="5"
+        [evolutionPath]="'cosmic'"
+        [imageUrl]="'assets/radiant-butterfly.gif'"
+        (cardSelected)="onCardClicked($event)">
+      </app-radiant-butterfly>
+    </td>
+    <td>
+      <app-radiant-butterfly
+        [name]="'🦋Corrupted Butterfly🦋'"
+        [level]="4"
+        [attack]="10"
+        [defense]="6"
+        [evolutionPath]="'dark'"
+        [imageUrl]="'assets/corrupted-butterfly.gif'"
+        (cardSelected)="onCardClicked($event)">
+      </app-radiant-butterfly>
+    </td>
+    
+   
+    
+  </tr>
+  <tr>
+    <td>
+      <app-radiant-butterfly
+        [name]="'👑Celestial Butterfly👑'"
+        [level]="4"
+        [attack]="8"
+        [defense]="5"
+        [evolutionPath]="'cosmic'"
+        [imageUrl]="'assets/celestialbutterfly.gif'"
+        (cardSelected)="onCardClicked($event)">
+      </app-radiant-butterfly>
+    </td>
+    <td>
+      <app-worm
+        [name]="'👹Abyssal Devourer👹'"
+        [level]="1"
+        [attack]="1"
+        [defense]="1"
+        [evolutionPath]="'dark'"
+        [imageUrl]="'assets/demonic-worm.gif'"
+        (cardSelected)="onCardClicked($event)">
+      </app-worm>
+    </td>
+    <td>
+      <app-radiant-butterfly
+        [name]="'👑🦋Seraphim Butterfly🦋👑'"
+        [level]="4"
+        [attack]="80"
+        [defense]="100"
+        [evolutionPath]="'light'"
+        [imageUrl]="'assets/light-butterfly.gif'"
+        (cardSelected)="onCardClicked($event)">
+      </app-radiant-butterfly>
+      
+    </td>
+     
+  </tr>
+</table>
+
+
+<app-target
+    [targetSize]="80"
+  [spawnInterval]="1000"
+  [gameDuration]="9000"
+  [targetImage]="'assets/targets/1.png'"
+  [backgroundImage]="'assets/backgrounds/purple1.jpg'"
+  (gameOver)="onGameOver($event)"
+    [hitSound]="'assets/Sounds/spell2.wav'"
+    [successSound]="'assets/Sounds/spellfire.wav'"
+  [failSound]="'assets/Sounds/spellfire.wav'"
+  [requiredHits]="7"
+  (gameOver)="onGameOver($event)"
+></app-target>  

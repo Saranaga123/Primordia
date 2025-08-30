@@ -1,0 +1,70 @@
+.card-container {
+ width: 300px;
+  height: 250px;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.card-container:hover {
+  transform: scale(1.05);
+}
+
+.card-header {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+.butterfly-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.butterfly-img {
+  max-width: 100%;
+  max-height: 180px;
+}
+
+/* Cosmic Butterfly */
+/* Cosmic/Radiant Butterfly */
+.cosmic {
+  background: linear-gradient(135deg, #ffd700, #ffaf3b);
+  box-shadow: 0 0 30px rgba(255,223,0,0.8);
+  color: #ffffff; /* change this to desired color */
+}
+
+.cosmic .card-header {
+  color: #925208; /* radiant gold for the title */
+}
+
+.cosmic .card-footer {
+  color: #1a3388; /* lighter gold for stats */
+}
+
+
+/* Dark/Corrupted Butterfly */
+.dark {
+  background: linear-gradient(135deg, #2c003e, #000000);
+  box-shadow: 0 0 25px rgba(255,0,0,0.7);
+  color: #f8f8f8;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.card-footer span {
+  padding: 0 8px;
+}

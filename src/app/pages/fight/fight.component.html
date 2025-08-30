@@ -1,0 +1,64 @@
+<div class="fight-container">
+  <!-- Enemy Side -->
+  <div class="enemy-side">
+    <h2>👹 Enemy</h2>
+    <div class="cards">
+      <app-radiant-butterfly
+        [name]="enemy.name"
+        [level]="enemy.level"
+        [attack]="enemy.attack"
+        [defense]="enemy.defense"
+        [imageUrl]="enemy.imageUrl"
+        (cardSelected)="onCardClicked($event)">
+      </app-radiant-butterfly> 
+    </div>
+  </div>
+  <div class="hp-bar">
+  <div class="hp-fill" [style.width.%]="(displayedHP / enemy.defense) * 100"></div>
+</div>
+<p>Defense: {{ displayedHP | number:'1.0-0' }} / {{ enemy.defense }}</p>
+
+  <!-- Arena / Spell Casting -->
+  <div class="arena">
+    <h2>⚔️ Battle ⚔️</h2>
+    <app-target
+      [targetSize]="80"
+      [spawnInterval]="1000"
+      [gameDuration]="9000"
+      [targetImage]="'assets/targets/1.png'"
+      [backgroundImage]="'assets/backgrounds/purple1.jpg'"
+      [hitSound]="'assets/Sounds/spell2.wav'"
+      [successSound]="'assets/Sounds/spellfire.wav'"
+      [failSound]="'assets/Sounds/spellfail.wav'"
+      [requiredHits]="7"
+      (gameOver)="onGameOver($event)">
+    </app-target>
+  </div>
+
+  <!-- Player Side -->
+  <div class="player-side">
+  <h2>🧙 You</h2>
+  <div class="cards">
+    <app-worm
+      [name]="player.name"
+      [level]="player.level"
+      [attack]="player.attack"
+      [defense]="player.defense"
+      [imageUrl]="player.imageUrl"
+      (cardSelected)="onCardClicked($event)">
+    </app-worm>
+
+    <p>Defense: {{ displayedPlayerHP | number:'1.0-0' }} / {{ player.defense }}</p>
+    <div class="hp-bar">
+      <div class="hp-fill" [style.width.%]="(displayedPlayerHP / player.defense) * 100"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Fight Log -->
+<div class="fight-log">
+  <h3>Battle Log</h3>
+  <ul>
+    <li *ngFor="let entry of fightLog">{{ entry }}</li>
+  </ul>
+</div>

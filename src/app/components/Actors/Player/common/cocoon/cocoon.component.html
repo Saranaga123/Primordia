@@ -1,0 +1,13 @@
+<div class="card-container" [ngClass]="pathClass" (click)="onSelect()">
+  <div class="card-header">{{ name }}</div>
+
+  <div class="cocoon-body">
+    <img *ngIf="imageUrl" [src]="imageUrl" [alt]="name" class="cocoon-img" />
+  </div>
+
+  <div class="card-footer">
+    <span>Level: {{ level }}</span>
+    <span>DEF: {{ defense }}</span>
+  </div>
+</div>
+

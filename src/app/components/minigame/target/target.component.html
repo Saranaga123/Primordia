@@ -1,0 +1,50 @@
+<div
+  id="game-area"
+  class="game-area"
+  [ngStyle]="{
+    'background-image': backgroundImage ? 'url(' + backgroundImage + ')' : 'none',
+    'background-size': 'cover',
+    'background-position': 'center'
+  }"
+>
+  <!-- Target -->
+  <div
+    *ngIf="gameActive"
+    class="target"
+    [style.width.px]="targetSize"
+    [style.height.px]="targetSize"
+    [style.left.px]="targetX"
+    [style.top.px]="targetY"
+    (click)="hitTarget()"
+  >
+    <img
+      *ngIf="targetImage; else defaultCircle"
+      [src]="targetImage"
+      [style.width.px]="targetSize"
+      [style.height.px]="targetSize"
+      style="object-fit: contain;"
+    />
+    <ng-template #defaultCircle>
+      <div
+        [style.width.px]="targetSize"
+        [style.height.px]="targetSize"
+        style="border-radius: 50%; background: red;"
+      ></div>
+    </ng-template>
+  </div>
+
+  <!-- Overlay: Start or Game Over -->
+  <div *ngIf="!gameActive" class="overlay">
+  <ng-container *ngIf="score === 0; else gameOverBlock">
+    <button class="start-btn" (click)="startGame()">Attack</button>
+  </ng-container>
+
+  <ng-template #gameOverBlock>
+    <p *ngIf="score >= requiredHits">✨ Spell Success! ✨</p>
+    <p *ngIf="score < requiredHits">❌ Spell Failed ❌</p>
+    <p>Your Hits: {{ score }} times</p>
+    <button class="start-btn" (click)="startGame()">Try Again</button>
+  </ng-template>
+</div>
+
+</div>
