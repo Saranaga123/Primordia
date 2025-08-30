@@ -2,7 +2,7 @@
 .fight-container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: calc(100vh - 80px); /* reserve 80px for fight log */
   width: 100vw;
   box-sizing: border-box;
   padding: 5px;
@@ -14,8 +14,8 @@
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
-  flex-wrap: wrap; /* stack on narrow screens */
-  margin-bottom: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 5px;
 }
 
 /* Player & enemy cards wrapper */
@@ -45,13 +45,18 @@
 
 /* Arena / spell casting */
 .arena {
-  flex: 1;
+  flex: 1 1 auto;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 250px;
-  max-width: 100%;
+  width: 100%;
   padding: 5px;
+}
+
+.arena app-target {
+  width: 90%; /* or 100% if you want full width */
+  max-width: 500px; /* optional: don’t blow up on large screens */
 }
 
 /* Make the target image scale */
