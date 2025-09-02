@@ -1,6 +1,138 @@
+<div class="app-container">
 
+  <!-- Guardian Selection -->
+  <div class="guardian-selection" *ngIf="!playerGuardianAssigned">
+    <button (click)="assignRandomGuardian()">🛡️ Select Your Guardian</button>
+  </div>
 
- 
+  <!-- Main Game UI -->
+  <div *ngIf="playerGuardianAssigned">
 
+    <!-- Header -->
+    <header>
+      <span>🗡️ The Last Guardian 🐉</span>
+    </header>
 
-<router-outlet></router-outlet>
+    <main>
+
+      <!-- Biome Selection -->
+      <div class="biome-selection">
+        <label for="biome">🌿 Select Biome:</label>
+        <select id="biome" [(ngModel)]="selectedBiome">
+          <option *ngFor="let biome of biomes" [value]="biome">{{biome | titlecase}}</option>
+        </select>
+        <button (click)="searchEnemy()" [disabled]="currentEnemy">🔍 Search</button>
+      </div>
+
+      <!-- Battle Tables: Guardian vs Enemy -->
+      <div class="battle-tables" *ngIf="currentEnemy && guardian">
+
+        <!-- Guardian Table -->
+        <table class="side-table">
+          <caption>🛡️ Your Guardian</caption>
+          <tr>
+            <td colspan="2" class="entity-img">{{guardianEmoji}}</td>
+          </tr>
+          <tr><td>📝 Name:</td><td>{{guardian.name}}</td></tr>
+          <tr><td>❤️ HP:</td><td>{{guardian.hp | number:'1.0-2'}}</td></tr>
+          <tr><td>⚔️ STR:</td><td>{{guardian.str | number:'1.0-2'}}</td></tr>
+          <tr><td>🛡️ DEF:</td><td>{{guardian.def | number:'1.0-2'}}</td></tr>
+          <tr><td>💨 SPD:</td><td>{{guardian.spd | number:'1.0-2'}}</td></tr>
+          <tr><td>🔥 Attack →</td><td>{{calculateDamage(guardian, currentEnemy)}}</td></tr>
+          <tr><td>💨 Dodge →</td><td>{{calculateDodgeChance(currentEnemy, guardian)}}%</td></tr>
+          <tr><td>🏃 Escape Chance →</td><td>{{calculateDodgeChance(guardian, currentEnemy)}}%</td></tr>
+        </table>
+
+        <!-- Enemy Table -->
+        <table class="side-table">
+          <caption>👹 Enemy</caption>
+          <tr>
+            <td colspan="2" class="entity-img">{{currentEnemyEmoji}}</td>
+          </tr>
+          <tr><td>📝 Name:</td><td>{{currentEnemy.name}}</td></tr>
+          <tr><td>❤️ HP:</td><td>{{currentEnemy.hp}}</td></tr>
+          <tr><td>⚔️ STR:</td><td>{{currentEnemy.str}}</td></tr>
+          <tr><td>🛡️ DEF:</td><td>{{currentEnemy.def}}</td></tr>
+          <tr><td>💨 SPD:</td><td>{{currentEnemy.spd}}</td></tr>
+          <tr><td>🔥 Attack →</td><td>{{calculateDamage(currentEnemy, guardian)}}</td></tr>
+          <tr><td>💨 Dodge →</td><td>{{calculateDodgeChance(guardian, currentEnemy)}}%</td></tr>
+        </table>
+
+      </div>
+
+      <!-- Battle Actions -->
+      <div class="battle-actions" *ngIf="currentEnemy">
+        <button (click)="attackEnemy()">⚔️ Attack</button>
+        <button (click)="escape()">🏃 Escape</button>
+      </div>
+
+      <!-- Guardian Stats Panel (if no enemy) -->
+      <div class="stats-panel" *ngIf="!currentEnemy && guardian">
+        <h3>🛡️ Guardian Stats</h3>
+        <table>
+          <tr>
+            <td colspan="2" class="entity-img">{{guardianEmoji}}</td>
+          </tr>
+          <tr><td>📝 Name:</td><td>{{guardian.name}}</td></tr>
+          <tr><td>❤️ HP:</td><td>{{guardian.hp | number:'1.0-2'}}</td></tr>
+          <tr><td>⚔️ STR:</td><td>{{guardian.str | number:'1.0-2'}}</td></tr>
+          <tr><td>🛡️ DEF:</td><td>{{guardian.def | number:'1.0-2'}}</td></tr>
+          <tr><td>💨 SPD:</td><td>{{guardian.spd | number:'1.0-2'}}</td></tr>
+        </table>
+
+        <!-- Boss Button -->  
+         <div *ngIf="guardian.hp >= 100">
+  <p>⚠️ Boss Fights Available! Defeat {{totalBossesToWin - bossesDefeated}} more bosses to win!</p>
+  <button (click)="searchBoss()"  >👹 Fight a Boss</button>
+</div>
+<div *ngIf="gameWon">
+    <p>🎉 You have completed all boss fights! Do you want to restart a new journey?</p>
+    <button (click)="resetGame()">⏳ Start New Journey</button>
+  </div>
+        <!-- <button (click)="confirmReset()">⏳ Rewind Time</button> -->
+      </div>
+
+      <!-- Messages / Attack Log -->
+      <div class="messages" #messagesContainer>
+        <p *ngFor="let msg of messages">💬 {{msg}}</p>
+      </div>
+
+    </main>
+
+    <!-- Population Popup (Bottom) -->
+    <div class="population-btn" style="text-align:center; margin-top:1vh;">
+      <button (click)="showPopulation = true">🌎 View Populations</button>
+    </div>
+
+    <div class="popup" *ngIf="showPopulation">
+      <div class="popup-content">
+        <h2>🌍 Current Populations</h2>
+
+        <h3>🏹 Tribes</h3>
+        <table>
+          <tr *ngFor="let tribe of tribes">
+            <td>{{tribe.name}}</td>
+            <td>{{tribe.population}}</td>
+          </tr>
+        </table>
+
+        <h3>🐾 Animals</h3>
+        <table>
+          <tr *ngFor="let animal of animals">
+            <td>{{animal.name}}</td>
+            <td>{{animal.count}}</td>
+          </tr>
+        </table>
+
+        <button (click)="showPopulation = false">❌ Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="popup" *ngIf="showGuardianSlainPopup">
+  <div class="popup-content">
+    <h2>💀 Your Guardian was defeated!</h2> 
+    <button (click)="selectNewGuardian()">🛡️ Select New Guardian</button>
+  </div>
+</div>
